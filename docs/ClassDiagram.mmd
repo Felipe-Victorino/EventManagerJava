@@ -1,0 +1,44 @@
+classDiagram
+
+class Sala{
+    -long id
+    -String descricao
+}
+
+class Sessao{
+    -long id
+    -DateTime diahora
+}
+
+class Pessoa{
+    -String nome
+    -String cpf
+}
+
+class Participante{
+    -long id
+    -int avaliacao
+}
+
+class Palestrante{
+    -long id
+}
+
+class Inscricao{
+    -long id
+}
+
+class Evento{
+    -long id
+    -Date date
+}
+
+%% Heranças
+
+Pessoa <-- Palestrante
+Pessoa <-- Participante
+
+%%
+
+Sala --* Sessao
+Sessao --o Evento
