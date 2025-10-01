@@ -3,15 +3,16 @@ classDiagram
 class Room{
     -long id
     -String description
-    -int capacidade
+    -int capacity
 }
 
 class Session{
     -long id
     -DateTime datetime
     -Room room
+    -LinkedList participants
 
-    -increverParticipante(Participante part)
+    -registerParticipant(Participante part)
 }
 
 class Person{
@@ -38,6 +39,7 @@ class Subscription{
     -long id
     -Participant participant
     -Session session
+    -Feedback feedback
 }
 
 class Event{
@@ -45,15 +47,22 @@ class Event{
     -Date date
 }
 
+class Feedback{
+    -long id
+    -int finalCapacity
+    -int predictedCapacity
+    -double rating
+}
+
 %% Heranças
 
 Person <-- Participant
 Person <-- Speaker
 
-%%
-Subscription *-- Participant
-Subscription *-- Session
+
+Subscription "0.*" *-- "1.1" Participant
+Subscription "1.*" *-- "1.1" Session
 
 
-Room --* Session
-Session --o Event
+Room "0.1" --* "1.*" Session
+Session "1.*" --o "1.1" Event
