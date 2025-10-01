@@ -15,22 +15,23 @@ class Session{
     -registerParticipant(Participante part)
 }
 
-class Person{
-    -String name
-    -String cpf
-
-    - abstract Card createCard()
+class RegisterCard{
+    -long id
 }
 
 class Participant{
     -long id
     -int avaliacao
+    -String nome
+    -String cpf
 
     - Card createCard()
 }
 
 class Speaker{
     -long id
+    -String nome
+    -String cpf
 
     - Card createCard()
 }
@@ -56,13 +57,11 @@ class Feedback{
 
 %% Heranças
 
-Person <|-- Participant
-Person <|-- Speaker
-
 
 Subscription "0.*" --o "1.1" Participant
 Subscription "1.*" --o "1.1" Session
 
+Session "1.1" *-- "1.*" Speaker
 
 Room "0.1" --* "1.*" Session
 Session "1.*" --* "1.1" Event
