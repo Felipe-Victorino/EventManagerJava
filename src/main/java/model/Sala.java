@@ -16,22 +16,22 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String nome;
+    private String name;
 
-    private String descricao;
+    private String description;
 
-    private int quantidadeMax;
+    private int maxCapacity;
 
     public Sala(){
 
     }
 
     public long getId() {return id;}
-    public String getNome() {return nome;}
-    public String getDescricao() {return descricao;}
-    public int getQuantidadeMax() {return quantidadeMax;}
+    public String getName() {return name;}
+    public String getDescription() {return description;}
+    public int getMaxCapacity() {return maxCapacity;}
 
-    public void setNome(String nome) {this.nome = nome;}
-    public void setDescricao(String descricao) {this.descricao = descricao;}
-    public void setQuantidadeMax(int quantidadeMax) {this.quantidadeMax = quantidadeMax;}
+    public void setName(String name) {this.name = name;}
+    public void setDescription(String description) {this.description = description;}
+    public void setMaxCapacity(int maxCapacity) {this.maxCapacity = maxCapacity;}
 }

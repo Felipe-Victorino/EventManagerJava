@@ -8,7 +8,7 @@ import javax.swing.JTextArea;
 
 public class View {
 
-    public void startWindow(){
+    public void start(){
         JFrame window = new JFrame("JEvent Manager");
 
         window.setSize(500,300);
