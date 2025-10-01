@@ -56,13 +56,15 @@ class Feedback{
 
 %% Heranças
 
-Person <-- Participant
-Person <-- Speaker
+Person <|-- Participant
+Person <|-- Speaker
 
 
-Subscription "0.*" *-- "1.1" Participant
-Subscription "1.*" *-- "1.1" Session
+Subscription "0.*" --o "1.1" Participant
+Subscription "1.*" --o "1.1" Session
 
 
 Room "0.1" --* "1.*" Session
-Session "1.*" --o "1.1" Event
+Session "1.*" --* "1.1" Event
+
+Session "1.1" o-- "1.1" Feedback
