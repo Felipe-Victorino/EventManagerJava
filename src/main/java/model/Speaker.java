@@ -13,4 +13,16 @@ public class Speaker{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    private String nome;
+
+    private String cpf;
+
+    public Speaker(){
+
+    }
+
+    public long getId() {return this.id;}
+    public String getNome() {return this.nome;}
+    public String getCpf() {return this.cpf;}
 }
