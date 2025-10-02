@@ -4,16 +4,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 public abstract class Dao<T> implements InterfaceDao<T>{
 
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersistenciaPU");
 
-	Class<T> cls;
+	Class<T> entityClass;
 
-	public Dao(Class<T> cls){
-		this.cls = cls;
+	@SuppressWarnings("unchecked")
+	public Dao() {
+		this.entityClass = (Class<T>) ((ParameterizedType) getClass()
+				.getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
 	public void insert(T t){
@@ -40,14 +43,14 @@ public abstract class Dao<T> implements InterfaceDao<T>{
 	public T searchBy(long id){
 		EntityManager em = emf.createEntityManager();
 		try{
-			return em.find(cls, id);
+			return em.find(entityClass, id);
 		} finally{
 			em.close();
 		}
 	};
 	public List<T> searchAll(){
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("from " + cls.getSimpleName());
+		Query query = em.createQuery("from " + entityClass.getSimpleName());
 		return (List<T>) query.getResultList();
 	};
 }
