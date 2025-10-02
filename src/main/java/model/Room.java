@@ -9,8 +9,8 @@ import javax.persistence.Table;
 import javax.persistence.GenerationType;
 
 @Entity
-@Table(name = "sala")
-public class Sala {
+@Table(name = "room")
+public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Sala {
 
     private int maxCapacity;
 
-    public Sala(){
+    public Room(){
 
     }
 
