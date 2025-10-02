@@ -1,44 +1,69 @@
 classDiagram
 
-class Sala{
+class Room{
     -long id
-    -String descricao
+    -String description
+    -int capacity
 }
 
-class Sessao{
+class Session{
     -long id
-    -DateTime diahora
+    -DateTime datetime
+    -Room room
+    -LinkedList participants
+
+    -registerParticipant(Participante part)
 }
 
-class Pessoa{
-    -String nome
-    -String cpf
+class RegisterCard{
+    -long id
 }
 
-class Participante{
+class Participant{
     -long id
     -int avaliacao
+    -String nome
+    -String cpf
+
+    - Card createCard()
 }
 
-class Palestrante{
+class Speaker{
     -long id
+    -String nome
+    -String cpf
+
+    - Card createCard()
 }
 
-class Inscricao{
+class Registry{
     -long id
+    -Participant participant
+    -Session session
+    -Feedback feedback
 }
 
-class Evento{
+class Event{
     -long id
     -Date date
 }
 
+class Feedback{
+    -long id
+    -int finalCapacity
+    -int predictedCapacity
+    -double rating
+}
+
 %% Heranças
 
-Pessoa <-- Palestrante
-Pessoa <-- Participante
 
-%%
+Registry "0.*" --o "1.1" Participant
+Registry "1.*" --o "1.1" Session
 
-Sala --* Sessao
-Sessao --o Evento
+Session "1.1" *-- "1.*" Speaker
+
+Room "1.1" --* "0.1" Session
+Session "1.*" --* "1.1" Event
+
+Session "1.1" o-- "1.1" Feedback
