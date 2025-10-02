@@ -36,7 +36,7 @@ class Speaker{
     - Card createCard()
 }
 
-class Subscription{
+class Registry{
     -long id
     -Participant participant
     -Session session
@@ -58,8 +58,8 @@ class Feedback{
 %% Heranças
 
 
-Subscription "0.*" --o "1.1" Participant
-Subscription "1.*" --o "1.1" Session
+Registry "0.*" --o "1.1" Participant
+Registry "1.*" --o "1.1" Session
 
 Session "1.1" *-- "1.*" Speaker
 
