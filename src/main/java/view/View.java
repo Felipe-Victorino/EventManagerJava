@@ -1,34 +1,26 @@
 package view;
 
-import java.awt.GridBagLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.*;
+import java.awt.*;
 
-public class View {
+public class View extends JFrame{
 
-    public void start(){
-        JFrame window = new JFrame("JEvent Manager");
+    private JPanel contentPane;
+    private JTabbedPane tabbedPane;
+    private JPanel Main;
+    private JPanel Extra;
+    private JTable nextInLineTable;
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
+    private CardLayout layout;
 
-        window.setSize(500,300);
-
-        JPanel panel = new JPanel();
-        panel.setSize(300, 300);
-
-        panel.setLayout(new GridBagLayout());
-
-        JLabel label = new JLabel();
-        label.setText("Test");
-
-        JTextArea textArea = new JTextArea(1, 20);
-
-        panel.add(label);
-        panel.add(textArea);
-
-        window.add(panel);
-
-        window.setVisible(true);
+    public View (){
+        setContentPane(this.contentPane);
+        setTitle("EventWalker");
+        setSize(720, 460);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
 
