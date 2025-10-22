@@ -1,6 +1,4 @@
-package util;
-
-import java.util.Date;
+package util.interval;
 
 public abstract class Interval<T>{
 	T low, high;

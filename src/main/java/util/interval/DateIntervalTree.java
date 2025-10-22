@@ -1,46 +1,30 @@
-package util;
+package util.interval;
 
-public class BinaryTree {
+import java.util.Date;
+
+public class DateIntervalTree {
+	// if I extend the Binary Tree Class will the node be overwritten by this one or will I have two nodes
 
 	Node root;
 
-	private static class Node{
-		int value;
-		Node left;
-		Node right;
-
-		public Node(int value){
-			this.value = value;
-			this.left = null;
-			this.right = null;
-		}
-	}
-
-	public void peek() {
-		printTree(root, 0);
-	}
-	public boolean searchFor(int value){ return TreeSearch(value);}
-	public void add(int value){ root = add(root, value);}
-	public void remove(int value){ root = remove(root, value);}
-
-	private Node add(Node node, int value){
+	private Node add(Node node, DateInterval value){
 		if(node == null){
 			node = new Node(value);
-		} else if (value < node.value){
+		} else if (value.low.before(node.interval.low)){
 			node.left = add(node.left, value);
 		} else {
 			node.right = add(node.right, value);
 		}
 		return node;
 	}
-
-	private Node remove(Node root, int value){
+	
+	private Node remove(Node root, DateInterval value){
 		if(root == null){
 			return null;
 		}
-		if(root.value < value){
+		if(root.interval.low.before(value.low)){
 			root.right = remove(root.right, value);
-		} else if (root.value > value){
+		} else if (root.interval.low.after(value.low)){
 			root.left = remove(root.right, value);
 		} else {
 			if(isLeaf(root)){
@@ -54,8 +38,8 @@ public class BinaryTree {
 			}
 
 			Node min = min(root.right);
-			root.value = min.value;
-			root.right = remove (root, min.value);
+			root.interval = min.interval;
+			root.right = remove (root, min.interval);
 		}
 		return root;
 	}
@@ -71,14 +55,14 @@ public class BinaryTree {
 		}
 		return aux;
 	}
-
-	private boolean TreeSearch(int value) {
+	
+	private boolean TreeSearch(DateInterval value) {
 		Node root = this.root;
 
 		while(root != null){
-			if(root.value == value) return true;
+			if(root.interval == value) return true;
 
-			root = value < root.value ? root.left : root.right;
+			root = value.low.before(root.interval.low)  ? root.left : root.right;
 		}
 		return false;
 	}
@@ -89,8 +73,21 @@ public class BinaryTree {
 		for (int i = 0; i < level; i++) {
 			System.out.print("    ");
 		}
-		System.out.println(root.value);
+		System.out.println(root.interval.low);
 		printTree(root.left, level + 1);
 	}
 
+	private static class Node{
+		DateInterval interval;
+		Date max;
+		Node left, right;
+
+
+		public Node(DateInterval value){
+			this.interval = value;
+			this.max = value.high;
+			this.left = null;
+			this.right = null;
+		}
+	}
 }
