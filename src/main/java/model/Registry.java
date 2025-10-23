@@ -3,6 +3,7 @@ package model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -15,9 +16,11 @@ public class Registry {
 	private long id;
 
 	@ManyToOne
+	@JoinColumn(name = "participant_id")
 	Participant participant;
 
 	@ManyToOne
+	@JoinColumn(name = "session_id")
 	Session session;
 
 	// Feedback feedback;
