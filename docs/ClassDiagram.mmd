@@ -18,7 +18,7 @@ class Session{
 class RegisterCard{
     -long id
 }
-class Pessoa{
+class Person{
 
     -String nome
     -String cpf
@@ -56,8 +56,8 @@ class Feedback{
 
 %% Heranças
 
-Speaker --|> Pessoa
-Participant --|> Pessoa
+Speaker --|> Person
+Participant --|> Person
 
 Registry "0.*" --o "1.1" Participant
 Registry "1.*" --o "1.1" Session

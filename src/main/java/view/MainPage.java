@@ -9,16 +9,16 @@ public class View extends JFrame{
     private JTabbedPane tabbedPane;
     private JPanel Main;
     private JPanel Extra;
-    private JTable nextInLineTable;
-    private JButton button1;
+	private JButton button1;
     private JButton button2;
     private JButton button3;
-    private CardLayout layout;
+	private CardLayout layout;
 
     public View (){
+
         setContentPane(this.contentPane);
         setTitle("EventWalker");
-        setSize(720, 460);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
     }
